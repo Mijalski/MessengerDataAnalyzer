@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Loaders\Files\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JorgeSerrano.Json.JsonSnakeCaseNamingPolicy" Version="0.9.0" />
+  </ItemGroup>
+
 </Project>
