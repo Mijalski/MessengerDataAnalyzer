@@ -5,10 +5,9 @@ namespace MessengerDataAnalyzer.Analyzers;
 
 public class MessageCountPerPersonAnalyzer : IAnalyzer
 {
+    public bool IsDisabled { get; } = false;
     public string AnalyzeData(Conversation conversation)
     {
-        Console.WriteLine($"Analyzer {GetType().Name}");
-
         var countsForConversation =
             conversation.Messages
                 .Where(m => !m.IsUnsent && !string.IsNullOrEmpty(m.Content))
@@ -21,6 +20,7 @@ public class MessageCountPerPersonAnalyzer : IAnalyzer
                 .OrderByDescending(m => m.MessageCount)
                 .ToList();
 
-        return string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.SenderName}: {x.MessageCount} messages"));
+        return $"{Environment.NewLine}Analyzer {GetType().Name}{Environment.NewLine}" 
+                + string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.SenderName};{x.MessageCount}"));
     }
 }

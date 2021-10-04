@@ -5,15 +5,16 @@ namespace MessengerDataAnalyzer.Analyzers;
 
 public class MessageWithWordCountPerPersonAnalyzer : IAnalyzer
 {
-    private static List<string> _wordsToFind = new ()
+    public bool IsDisabled { get; } = false;
+    private static readonly List<string> WordsToFind = new ()
     {
-        "kekw", "kurwa"
+        "kekw", "kurwa", "kekew", "garnuch", "braciak"
     };
 
     public string AnalyzeData(Conversation conversation)
     {
         var returnString = string.Empty;
-        foreach (var wordToFind in _wordsToFind)
+        foreach (var wordToFind in WordsToFind)
         {
             returnString += $"{Environment.NewLine}Analyzer {GetType().Name} for word: {wordToFind}{Environment.NewLine}";
 
@@ -29,7 +30,7 @@ public class MessageWithWordCountPerPersonAnalyzer : IAnalyzer
                     .OrderByDescending(m => m.MessageCount)
                     .ToList();
 
-            returnString += string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.SenderName}: {x.MessageCount} messages"));
+            returnString += string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.SenderName};{x.MessageCount}"));
         }
 
         return returnString;

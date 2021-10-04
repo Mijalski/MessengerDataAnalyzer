@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Folder Include="Loaders\Files\" />
+    <Folder Include="Savers\" />
   </ItemGroup>
 
   <ItemGroup>

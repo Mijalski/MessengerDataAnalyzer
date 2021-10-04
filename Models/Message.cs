@@ -3,7 +3,7 @@
 public class Message
 {
     public string SenderName { get; set; } = default!;
-    public double TimestampMs { get; set; }
+    public long TimestampMs { get; set; }
     public string? Content { get; set; }
     public string Type { get; set; } = default!;
     public bool IsUnsent { get; set; }
