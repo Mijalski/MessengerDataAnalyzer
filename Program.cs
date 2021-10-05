@@ -1,10 +1,11 @@
-﻿using MessengerDataAnalyzer.Analyzers;
+﻿using MessengerDataAnalyzer;
 using MessengerDataAnalyzer.Analyzers.Generics;
 using MessengerDataAnalyzer.Loaders.Files;
 using MessengerDataAnalyzer.Savers;
 
-var fileLoader = new ConversationFromFileLoader();
-var fileSaver = new FileSaver();
+var options = new ProgramOptions();
+var fileLoader = new ConversationFromFileLoader(options);
+var fileSaver = new FileSaver(options);
 
 fileSaver.PrepareFileForSaving();
 var conversation = await fileLoader.GetConversationAsync();

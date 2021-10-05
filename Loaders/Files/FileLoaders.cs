@@ -6,11 +6,16 @@ namespace MessengerDataAnalyzer.Loaders.Files;
 
 public class ConversationFromFileLoader : IConversationLoader
 {
-    private const string FilesRootPath = "D:\\KYRGaming\\Facebook data\\ekipa";
+    private readonly ProgramOptions _options;
+
+    public ConversationFromFileLoader(ProgramOptions options)
+    {
+        _options = options ?? throw new ArgumentNullException(nameof(options));
+    }
 
     public async Task<Conversation> GetConversationAsync()
     {
-        var fileEntries = Directory.GetFiles(FilesRootPath);
+        var fileEntries = Directory.GetFiles(_options.FilesRootPath);
         var conversation = new Conversation();
 
         foreach (var file in fileEntries)

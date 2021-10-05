@@ -6,7 +6,7 @@ namespace MessengerDataAnalyzer.Analyzers;
 public class ReactionsFromSinglePersonToPersonAnalyzer : IAnalyzer
 {
     public bool IsDisabled { get; } = false;
-    private const string PersonName = "Hubert Mijalski";
+    private const string PersonName = "Sender Name"; // put any username here
 
     public string AnalyzeData(Conversation conversation)
     {

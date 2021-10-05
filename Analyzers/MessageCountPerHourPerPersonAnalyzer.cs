@@ -5,7 +5,7 @@ namespace MessengerDataAnalyzer.Analyzers;
 
 public class MessageCountPerHourPerPersonAnalyzer : IAnalyzer
 {
-    public bool IsDisabled { get; } = true;
+    public bool IsDisabled { get; } = false;
     public string AnalyzeData(Conversation conversation)
     {
         var countsForConversation =

@@ -4,18 +4,24 @@ namespace MessengerDataAnalyzer.Savers;
 
 public class FileSaver
 {
-    private const string FilePath = "D:\\KYRGaming\\Facebook data\\ekipa results\\output.txt";
+    private readonly ProgramOptions _options;
+
+    public FileSaver(ProgramOptions options)
+    {
+        _options = options ?? throw new ArgumentNullException(nameof(options));
+    }
+
 
     public void PrepareFileForSaving()
     {
-        if (File.Exists(FilePath))
+        if (File.Exists(_options.OutputFilePath))
         {
-            File.Delete(FilePath);
+            File.Delete(_options.OutputFilePath);
         }
     }
 
     public async Task SaveTextToFileAsync(string text)
     {
-        await File.AppendAllTextAsync(FilePath, text);
+        await File.AppendAllTextAsync(_options.OutputFilePath, text);
     }
 }

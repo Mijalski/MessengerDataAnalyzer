@@ -6,7 +6,7 @@ namespace MessengerDataAnalyzer.Analyzers;
 public class ReactionsGivenOfTypeToOthersPerPersonAnalyzer : IAnalyzer
 {
     public bool IsDisabled { get; } = false;
-    private const string Reaction = "💗";
+    private const string Reaction = "💗"; // put any emoji here
     public string AnalyzeData(Conversation conversation)
     {
         var countsForConversation =
