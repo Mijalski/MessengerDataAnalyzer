@@ -20,7 +20,6 @@ public class MessageCountPerPersonAnalyzer : IAnalyzer
                 .OrderByDescending(m => m.MessageCount)
                 .ToList();
 
-        return $"{Environment.NewLine}Analyzer {GetType().Name}{Environment.NewLine}" 
-                + string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.SenderName};{x.MessageCount}"));
+        return string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.SenderName};{x.MessageCount}"));
     }
 }

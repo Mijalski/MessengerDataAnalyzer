@@ -8,7 +8,7 @@ public class MessageWithWordCountPerPersonAnalyzer : IAnalyzer
     public bool IsDisabled { get; } = false;
     private static readonly List<string> WordsToFind = new ()
     {
-        "kekw", "kurwa", "kekew", "garnuch", "braciak"
+        "kekw", "kurwa", "kekew", "garnuch", "braciak", "smalec"
     };
 
     public string AnalyzeData(Conversation conversation)

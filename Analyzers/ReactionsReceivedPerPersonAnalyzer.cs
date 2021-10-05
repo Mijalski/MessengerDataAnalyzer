@@ -25,7 +25,6 @@ public class ReactionsReceivedPerPersonAnalyzer : IAnalyzer
                 .OrderByDescending(m => m.OverallReactionsCount)
                 .ToList();
 
-        return $"{Environment.NewLine}Analyzer {GetType().Name}{Environment.NewLine}" 
-               + string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.SenderName};{x.OverallReactionsCount}"));
+        return string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.SenderName};{x.OverallReactionsCount}"));
     }
 }

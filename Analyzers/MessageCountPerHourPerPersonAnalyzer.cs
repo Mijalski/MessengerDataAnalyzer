@@ -27,7 +27,6 @@ public class MessageCountPerHourPerPersonAnalyzer : IAnalyzer
                 .ThenByDescending(m => m.SenderName)
                 .ToList();
 
-        return $"{Environment.NewLine}Analyzer {GetType().Name}{Environment.NewLine}"
-                + string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.Hour};{x.SenderName};{x.MessageCount}"));
+        return string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.Hour};{x.SenderName};{x.MessageCount}"));
     }
 }
