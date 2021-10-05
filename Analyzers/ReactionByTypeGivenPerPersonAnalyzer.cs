@@ -15,7 +15,7 @@ public class ReactionByTypeGivenPerPersonAnalyzer : IAnalyzer
                 .GroupBy(r => new { r.Actor, r.Reaction })
                 .Select(r => new
                 {
-                    ActorAndReaction = r.Key.Actor + r.Key.Reaction,
+                    ActorAndReaction = r.Key.Actor + ";" + r.Key.Reaction,
                     ReactionCount = r.Count()
                 })
                 .OrderByDescending(m => m.ReactionCount)
