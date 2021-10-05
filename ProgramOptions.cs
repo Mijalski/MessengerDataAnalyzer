@@ -2,6 +2,13 @@
 
 public class ProgramOptions 
 {
-    public string FilesRootPath { get; } = @"D:\YourFacebookDataPathToJson";
-    public string OutputFilePath { get; } = @"D:\YourFacebookDataPathToJson\output\result.txt";
+    public ProgramOptions()
+    {
+    }
+    public ProgramOptions(string fileRootDirectory)
+    {
+        FileRootDirectory = fileRootDirectory;
+    }
+
+    public string FileRootDirectory { get; } = Directory.GetCurrentDirectory();
 }

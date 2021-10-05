@@ -4,24 +4,31 @@ namespace MessengerDataAnalyzer.Savers;
 
 public class FileSaver
 {
-    private readonly ProgramOptions _options;
+    private readonly string _resultFileDirectory;
+    private readonly string _resultFilePath;
 
     public FileSaver(ProgramOptions options)
     {
-        _options = options ?? throw new ArgumentNullException(nameof(options));
+        _resultFileDirectory = Path.Combine(options.FileRootDirectory, "output");
+        _resultFilePath = Path.Combine(_resultFileDirectory, Path.GetFileName("result.txt"));
     }
 
 
     public void PrepareFileForSaving()
     {
-        if (File.Exists(_options.OutputFilePath))
+        if (!Directory.Exists(_resultFileDirectory))
         {
-            File.Delete(_options.OutputFilePath);
+            Directory.CreateDirectory(_resultFileDirectory);
+        }
+        
+        if (File.Exists(_resultFilePath))
+        {
+            File.Delete(_resultFilePath);
         }
     }
 
     public async Task SaveTextToFileAsync(string text)
     {
-        await File.AppendAllTextAsync(_options.OutputFilePath, text);
+        await File.AppendAllTextAsync(_resultFilePath, text);
     }
 }

@@ -8,7 +8,7 @@ public class MessageWithWordCountPerPersonAnalyzer : IAnalyzer
     public bool IsDisabled { get; } = false;
     private static readonly List<string> WordsToFind = new ()
     {
-        "hello" // put words to find here
+        "example word" // put words to find here
     };
 
     public string AnalyzeData(Conversation conversation)

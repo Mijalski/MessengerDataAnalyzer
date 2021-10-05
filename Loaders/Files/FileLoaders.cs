@@ -6,16 +6,15 @@ namespace MessengerDataAnalyzer.Loaders.Files;
 
 public class ConversationFromFileLoader : IConversationLoader
 {
-    private readonly ProgramOptions _options;
-
+    private readonly string _fileRootDirectory;
     public ConversationFromFileLoader(ProgramOptions options)
     {
-        _options = options ?? throw new ArgumentNullException(nameof(options));
+        _fileRootDirectory = options.FileRootDirectory;
     }
 
     public async Task<Conversation> GetConversationAsync()
     {
-        var fileEntries = Directory.GetFiles(_options.FilesRootPath);
+        var fileEntries = Directory.GetFiles(_fileRootDirectory).Where(_ => _.EndsWith(".json"));
         var conversation = new Conversation();
 
         foreach (var file in fileEntries)
@@ -38,6 +37,7 @@ public class ConversationFromFileLoader : IConversationLoader
 
         return conversation;
     }
+
     private static string DecodeString(string text)
     {
         text = text.Replace(@"\\", @"\\\\").Replace(@"\n", @"\\n").Replace(@"\""", @"\\"""); // Facebook sucks!

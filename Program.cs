@@ -3,7 +3,10 @@ using MessengerDataAnalyzer.Analyzers.Generics;
 using MessengerDataAnalyzer.Loaders.Files;
 using MessengerDataAnalyzer.Savers;
 
-var options = new ProgramOptions();
+var options = args.Any() && !string.IsNullOrEmpty(args[0]) 
+    ? new ProgramOptions(args[0]) // assign the path from argument
+    : new ProgramOptions(); // get default path
+
 var fileLoader = new ConversationFromFileLoader(options);
 var fileSaver = new FileSaver(options);
 
@@ -18,3 +21,4 @@ foreach (var analyzer in AnalyzerExtensions.GetAllAnalyzers().Where(a => !a.IsDi
     Console.WriteLine(resultWithTitle);
     await fileSaver.SaveTextToFileAsync(resultWithTitle);
 }
+
