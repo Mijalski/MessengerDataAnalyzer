@@ -4,9 +4,13 @@ Allows you to extract data from your messanger covnersations.
 
 ## How to run
 
-With CMD 
+With CMD (specyfing the path to json files)
 ```
 > .\MessengerDataAnalyzer.exe "C:\Optional Custom Directory\With Json Files"
+```
+or by putting json files directly with exe file
+```
+> .\MessengerDataAnalyzer.exe
 ```
 
 ## Analyzers available
