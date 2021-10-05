@@ -18,6 +18,7 @@ public class AllGroupedReactionsAnalyzer : IAnalyzer
                     Reaction = r.Key,
                     ReactionCount = r.Count()
                 })
+                .OrderByDescending(r => r.ReactionCount)
                 .ToList();
 
         return string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.Reaction};{x.ReactionCount}"));
