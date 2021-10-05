@@ -6,7 +6,8 @@ namespace MessengerDataAnalyzer.Analyzers;
 public class ReactionsFromSinglePersonToPersonAnalyzer : IAnalyzer
 {
     public bool IsDisabled { get; } = false;
-    private static readonly string PersonName = "Robert PrzyziÃ³Åkowski";
+    private const string PersonName = "Hubert Mijalski";
+
     public string AnalyzeData(Conversation conversation)
     {
         var countsForConversation =
@@ -23,6 +24,7 @@ public class ReactionsFromSinglePersonToPersonAnalyzer : IAnalyzer
                 .OrderByDescending(m => m.ReactionCount)
                 .ToList();
 
-        return string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.SenderName};{x.ReactionCount}"));
+        return $"PersonName{Environment.NewLine}" 
+               + string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.SenderName};{x.ReactionCount}"));
     }
 }
