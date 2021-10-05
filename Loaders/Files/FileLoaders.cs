@@ -15,8 +15,8 @@ public class ConversationFromFileLoader : IConversationLoader
 
         foreach (var file in fileEntries)
         {
-            var jsonString = await File.ReadAllTextAsync(file, Encoding.UTF8);
-            var conversationPart = jsonString.DeserializeUsingDefaultSettings<Conversation>();
+            var json = await File.ReadAllTextAsync(file);
+            var conversationPart = DecodeString(json).DeserializeUsingDefaultSettings<Conversation>();
 
             if (conversationPart is null)
             {
@@ -32,5 +32,12 @@ public class ConversationFromFileLoader : IConversationLoader
         }
 
         return conversation;
+    }
+    private static string DecodeString(string text)
+    {
+        text = text.Replace(@"\\", @"\\\\").Replace(@"\n", @"\\n").Replace(@"\""", @"\\"""); // Facebook sucks!
+        var targetEncoding = Encoding.GetEncoding("ISO-8859-1");
+        var unescapedText = System.Text.RegularExpressions.Regex.Unescape(text);
+        return Encoding.UTF8.GetString(targetEncoding.GetBytes(unescapedText));
     }
 }

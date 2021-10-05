@@ -1,4 +1,6 @@
-﻿namespace MessengerDataAnalyzer.Savers;
+﻿using System.Text;
+
+namespace MessengerDataAnalyzer.Savers;
 
 public class FileSaver
 {
