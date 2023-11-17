@@ -26,7 +26,7 @@ public class ReactionsFromSinglePersonToPersonAnalyzer : IAnalyzer
                     .OrderByDescending(m => m.ReactionCount)
                     .ToList();
 
-            returnString += $"{Environment.NewLine}PersonName: {Environment.NewLine}"
+            returnString += $"{Environment.NewLine}PersonName: {participant.Name}{Environment.NewLine}"
                             + string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.SenderName};{x.ReactionCount}"));
         }
 
