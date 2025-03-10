@@ -3,7 +3,7 @@ using MessengerDataAnalyzer.Models;
 
 namespace MessengerDataAnalyzer.Analyzers;
 
-public class MessageCountPerHourPerPersonAnalyzer : IAnalyzer
+public class MessageCountPerMonthPerPersonAnalyzer : IAnalyzer
 {
     public bool IsDisabled { get; } = false;
     public string AnalyzeData(Conversation conversation)
