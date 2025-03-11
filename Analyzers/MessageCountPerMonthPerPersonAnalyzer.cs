@@ -14,19 +14,19 @@ public class MessageCountPerMonthPerPersonAnalyzer : IAnalyzer
                 .Select(m => new
                 {
                     m.SenderName,
-                    DateTimeOffset.FromUnixTimeMilliseconds(m.TimestampMs).Hour
+                    DateTimeOffset.FromUnixTimeMilliseconds(m.TimestampMs).Month
                 })
-                .GroupBy(m => new { m.SenderName, m.Hour })
+                .GroupBy(m => new { m.SenderName, m.Month })
                 .Select(m => new
                 {
                     m.Key.SenderName,
-                    m.Key.Hour,
+                    m.Key.Month,
                     MessageCount = m.Count()
                 })
-                .OrderByDescending(m => m.Hour)
+                .OrderByDescending(m => m.Month)
                 .ThenByDescending(m => m.SenderName)
                 .ToList();
 
-        return string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.Hour};{x.SenderName};{x.MessageCount}"));
+        return string.Join(Environment.NewLine, countsForConversation.Select(x => $"{x.Month};{x.SenderName};{x.MessageCount}"));
     }
 }
